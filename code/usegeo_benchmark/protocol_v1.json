@@ -1,0 +1,85 @@
+{
+  "archive_sha256": {
+    "Dataset-1.zip": "84d89ef60cbf8cc3d971505cf53f598e581b22c65b571d939a8b8b2c3d32862f",
+    "Dataset-2.zip": "32f42e2706b4793a6f047fd070666b9c3ef4fa09583df327430bc0ff6d287b20",
+    "Dataset-3.zip": "9b1a5e9de2fe7889e23fa2b6fd3489c6707f55121ca72a48d980ea7b78e10a6e"
+  },
+  "completeness_threshold_m": 0.2,
+  "coordinate_system": {
+    "horizontal_crs": "EPSG:25832",
+    "units": "metres",
+    "vertical": "dataset-native Z; datum unresolved"
+  },
+  "corrections": [
+    "exact-count best-90-percent accuracy trim",
+    "strict invalid-result semantics without numeric metric sentinels"
+  ],
+  "evaluator_name": "usegeo-pointcloud-v1-derived",
+  "input_image_dimensions": [7952, 5304],
+  "limits": {
+    "free_space_required_bytes": 236223201280,
+    "las_query_chunk_points": 1000000,
+    "max_camera_centers_bytes": 67108864,
+    "max_submission_contract_bytes": 1048576,
+    "max_peak_rss_bytes": 64424509440,
+    "max_submission_bytes": 21474836480,
+    "max_submission_points": 300000000,
+    "query_workers": 8
+  },
+  "product": "pointcloud",
+  "protocol_version": "usegeo-pointcloud-v1",
+  "reference_support": {
+    "kind": "publisher-MVS-derived 5 m XY support",
+    "xy_threshold_m": 5.0
+  },
+  "scenes": {
+    "Dataset-1": {
+      "archive": "Dataset-1.zip",
+      "full_lidar_member": "Dataset-1/LiDAR_dataset1.las",
+      "image_count": 224,
+      "image_prefix": "Dataset-1/Camera_Inputs/Metashape_outputs_images/",
+      "orientation_member": "Dataset-1/Image_orientations_dataset1.xyz",
+      "publisher_mvs_member": "Dataset-1/MVS_dataset1.las"
+    },
+    "Dataset-2": {
+      "archive": "Dataset-2.zip",
+      "full_lidar_member": "Dataset-2/LiDAR_dataset2.las",
+      "image_count": 327,
+      "image_prefix": "Dataset-2/Camera_Inputs/Metashape_outputs_images/",
+      "orientation_member": "Dataset-2/Image_orientations_dataset2.xyz",
+      "publisher_mvs_member": "Dataset-2/MVS_dataset2.las"
+    },
+    "Dataset-3": {
+      "archive": "Dataset-3.zip",
+      "full_lidar_member": "Dataset-3/LiDAR_dataset3.las",
+      "image_count": 277,
+      "image_prefix": "Dataset-3/Camera_Inputs/Metashape_outputs_images/",
+      "orientation_member": "Dataset-3/Image_orientations_dataset3.xyz",
+      "publisher_mvs_member": "Dataset-3/MVS_dataset3.las"
+    }
+  },
+  "schema_version": "usegeo-benchmark-protocol-1.0",
+  "submission_schema_version": "usegeo-submission-1.1",
+  "tracks": {
+    "rgb-local": {
+      "alignment": "camera-center Sim(3)",
+      "method_inputs": ["images"]
+    },
+    "rgb-oriented": {
+      "alignment": "identity",
+      "method_inputs": ["images", "publisher orientation table"]
+    }
+  },
+  "trim_fraction": 0.9,
+  "unsupported_products": ["depth", "mesh"],
+  "upstream": {
+    "commit": "aa6897530e1827d2527d09f32147edb1e44c8542",
+    "files_sha256": {
+      "LICENSE": "ca7f0c8e79deb90183b6e8afc61bd1000b1a114214a552bb9393ffc2616158f2",
+      "eval_pointcloud.py": "6f391199dd90fe2e649bf305909ee3772a3bf307585ba42d4f3dae2a3882473c",
+      "filter_ground_truth_pointcloud.py": "9666a490cddccbec5a8fda69f8905ba506b1fe09200ab9136429d1c148c2718f",
+      "requirements.txt": "555a128255e998dad41ae7b223d611a2bfa6dbfea0a204ab8fc1df11bbf47ea9"
+    },
+    "repository": "https://github.com/UseGeoEvaluation/DepthEstimationAnd3DReconstruction"
+  }
+}

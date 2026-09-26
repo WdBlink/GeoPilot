@@ -1,0 +1,37 @@
+{
+  "schema": "geopilot-condition-program/2",
+  "contract_id": "0455d0217787c7d7ca26537ad2bb71018193da28d1d892e5310a627c1e1537fe",
+  "program_id": "p0",
+  "parent_id": null,
+  "entry": "prepare",
+  "nodes": [
+    {
+      "id": "prepare",
+      "kind": "tool",
+      "action": "prepare",
+      "parameters": {},
+      "success": "densify",
+      "failure": "end"
+    },
+    {
+      "id": "densify",
+      "kind": "tool",
+      "action": "densify",
+      "parameters": {"resolution-level": 1},
+      "success": "mesh",
+      "failure": "end"
+    },
+    {
+      "id": "mesh",
+      "kind": "tool",
+      "action": "mesh",
+      "parameters": {"decimate": 0.25},
+      "success": "end",
+      "failure": "end"
+    },
+    {
+      "id": "end",
+      "kind": "stop"
+    }
+  ]
+}

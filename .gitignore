@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+node_modules/
+code/geopilot_rsih/upstream/
+out/
+data/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.ply
+*.las
+*.laz
+*.dmap
+*.db

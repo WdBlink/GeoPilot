@@ -1,0 +1,87 @@
+{
+  "schema": "geopilot-public-knowledge/1",
+  "source_snapshot_sha256": "a3ae61db4eb82c32922c4da0b71baa58733729e30063903a3ffcb4c219973fcb",
+  "note": "Publication derivative. Entries retained; source filenames describe historical help captures not redistributed here. This file is not a drop-in substitute for the hash-bound historical request.",
+  "historical_sources": [
+    {
+      "path": "densify-help.txt",
+      "sha256": "a7c1059955c7ffbe7b1eb6a09ff7ab9448af8d47a8b83b6d5eb3e5f8338dc6c2"
+    },
+    {
+      "path": "mesh-help.txt",
+      "sha256": "5987c3d95942f350704184da98b3dc3b55246c65faf961e8e7deed2f6768458a"
+    },
+    {
+      "path": "refine-help.txt",
+      "sha256": "c80abd28c78d306cc6ac2a6ca0b0181a8d4716a477dc3e934c2ecc8dcfa90004"
+    }
+  ],
+  "entries": [
+    {
+      "id": "K1",
+      "type": "fact",
+      "claim": "DensifyPointCloud number-views is the number of neighbor views used in depth-map estimation; number-views-fuse is the minimum agreeing images required to accept a fused inlier. The configured defaults are 5 and 2.",
+      "source": "densify-help.txt:47-53"
+    },
+    {
+      "id": "K2",
+      "type": "hypothesis",
+      "claim": "Increasing multi-view agreement can reject inconsistent points but may reduce completeness. More depth-estimation views can add support or cost; global registration and reprojection diagnostics alone do not identify occlusion or depth noise. Validate, do not assume improvement.",
+      "source": "Interpretation of K1; not experimental evidence"
+    },
+    {
+      "id": "K3",
+      "type": "fact",
+      "claim": "resolution-level controls image downscaling before depth computation; geometric-iters controls geometric-consistent PatchMatch iterations; fusion-depth-diff-threshold limits allowed depth variation during fusion.",
+      "source": "densify-help.txt:39-40,59-60,87-89"
+    },
+    {
+      "id": "K4",
+      "type": "hypothesis",
+      "claim": "More detailed depth may retain structure at greater time/memory cost; stricter consistency can trade completeness for precision. The current diagnostics cannot establish these as the cause of a scene error.",
+      "source": "Interpretation of K3; unvalidated causal hypotheses"
+    },
+    {
+      "id": "K5",
+      "type": "fact",
+      "claim": "ReconstructMesh decimate is a surface decimation factor (1 disables decimation); close-holes tries to close small holes; smooth is the count of smoothing iterations.",
+      "source": "mesh-help.txt:51-65"
+    },
+    {
+      "id": "K6",
+      "type": "hypothesis",
+      "claim": "Less simplification or smoothing may retain details but retain noise; closing holes may increase apparent coverage but invent surface. Counts alone do not show which surface is correct.",
+      "source": "Interpretation of K5; requires paired geometry evaluation"
+    },
+    {
+      "id": "K7",
+      "type": "fact",
+      "claim": "RefineMesh resolution-level controls image downscaling for refinement; max-face-area is the maximum projected triangle area before subdivision.",
+      "source": "refine-help.txt:32-34,46-48"
+    },
+    {
+      "id": "K8",
+      "type": "open",
+      "claim": "Single-scene global metrics do not isolate matching, camera, depth, fusion or meshing causes. prepare is fixed this round; do not claim fixes to those unavailable actions. Evaluation timeout is not a geometric quality measurement.",
+      "source": "Current experiment scope; spec03 G06/G10/G46"
+    },
+    {
+      "id": "K9",
+      "type": "fact",
+      "claim": "RefineMesh 2.4.0 decimate default is 0 (auto), 1 disables this option. It is a separate option from ReconstructMesh decimate. Auto is not a fixed fraction or guaranteed face count. The current refine action registry does not expose decimate; do not invent an unsupported parameter.",
+      "source": "refine-help.txt:38-40; current registry"
+    },
+    {
+      "id": "K10",
+      "type": "fact",
+      "claim": "ReconstructMesh defaults: decimate=1 (disabled), remove-spurious=20, close-holes=30, smooth=2. Explicit arguments override defaults. These help defaults are not proof of historical config-file absence.",
+      "source": "mesh-help.txt:51-66"
+    },
+    {
+      "id": "K11",
+      "type": "open",
+      "claim": "The earlier attempt changed several mesh options and added refinement. Its valid scores were worse on all six metrics, with a different dense point count under the same densify arguments. This does not identify an individual cause; there is no measured repeat tolerance yet.",
+      "source": "verified attempt history supplied separately; not an independent causal claim"
+    }
+  ]
+}

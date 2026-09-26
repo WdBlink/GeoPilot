@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+type: software
+message: "Cite this software release. Manuscript authors and publication metadata are not yet finalized."
+title: "GeoPilot: Feedback-Guided Development of Reconstruction Programs"
+authors:
+  - name: "WdBlink"
+    website: "https://github.com/WdBlink"
+version: 0.1.0
+date-released: 2026-09-26
+repository-code: "https://github.com/WdBlink/GeoPilot"
+url: "https://github.com/WdBlink/GeoPilot"
+license: MIT
+keywords:
+  - aerial reconstruction
+  - feedback-guided agents
+  - photogrammetry
+  - research artifacts

@@ -1,0 +1,92 @@
+{
+  "schema_version": "usegeo-mesh-benchmark-protocol-1.0",
+  "protocol_version": "usegeo-mesh-rgb-oriented-v1",
+  "submission_schema_version": "usegeo-mesh-submission-1.0",
+  "track": "rgb-oriented",
+  "product": "mesh",
+  "geometry": "mesh.ply",
+  "scenes": {
+    "Dataset-1": {
+      "archive": "Dataset-1.zip",
+      "image_count": 224
+    },
+    "Dataset-2": {
+      "archive": "Dataset-2.zip",
+      "image_count": 327
+    },
+    "Dataset-3": {
+      "archive": "Dataset-3.zip",
+      "image_count": 277
+    }
+  },
+  "archive_sha256": {
+    "Dataset-1.zip": "84d89ef60cbf8cc3d971505cf53f598e581b22c65b571d939a8b8b2c3d32862f",
+    "Dataset-2.zip": "32f42e2706b4793a6f047fd070666b9c3ef4fa09583df327430bc0ff6d287b20",
+    "Dataset-3.zip": "9b1a5e9de2fe7889e23fa2b6fd3489c6707f55121ca72a48d980ea7b78e10a6e"
+  },
+  "sampling": {
+    "implementation_id": "numpy-pcg64-area-v1",
+    "seed": 20260916,
+    "count": 1000000,
+    "chunk": 100000,
+    "trim_fraction": 0.9,
+    "trim_count": 900000,
+    "threshold_m": 0.2
+  },
+  "raycast": {
+    "implementation": "scipy-ckdtree-aabb-sphere-float64-exact-refine-v1",
+    "threads": 1,
+    "origin_rule": "fixed-refined-lidar-aabb-center-100m-report-only",
+    "candidate_rule": "nearest-center exact upper bound; power-of-two radius-bin cKDTrees include every AABB-sphere lower bound not greater than upper bound",
+    "radius_bin_rule": "ceil(log2(AABB-sphere-radius-metres))",
+    "query_chunk": 100000,
+    "check_stride": 1024,
+    "max_materialized_candidate_pairs": 2000000
+  },
+  "limits": {
+    "max_contract_bytes": 1048576,
+    "max_mesh_bytes": 21474836480,
+    "max_vertices": 20000000,
+    "max_triangles": 40000000,
+    "degenerate_area_m2": 1e-12,
+    "max_peak_rss_bytes": 64424509440,
+    "scene_timeout_seconds": 14400,
+    "official_timeout_seconds": 7200,
+    "official_max_passes": 10000,
+    "watchdog_period_seconds": 0.5,
+    "max_rss_measurement_failures": 3
+  },
+  "fixture": {
+    "algorithm_id": "publisher-mvs-grid-mean-2p5d-v1",
+    "configuration_id": "publisher-mvs-grid-1m-v1",
+    "grid_resolution_m": 1.0,
+    "label": "publisher-mvs-derived approximate 2.5D acceptance fixture",
+    "policy": "two complete LAS passes; occupied-cell arithmetic means; no filtering"
+  },
+  "upstream": {
+    "repository": "https://github.com/UseGeoEvaluation/DepthEstimationAnd3DReconstruction",
+    "commit": "aa6897530e1827d2527d09f32147edb1e44c8542",
+    "official_eval_mesh_sha256": "55f52e5c5674da6cb9dd081889975fa7484c8d199b7aa44db9874558492cb194",
+    "license": "MIT"
+  },
+  "runtime": {
+    "implementation_id": "usegeo-mesh-geopilot-equal-v3-adaptive-batch",
+    "python": "3.10.20",
+    "numpy": "1.25.2",
+    "scipy": "1.11.1",
+    "laspy": "2.7.0",
+    "open3d": "0.17.0"
+  },
+  "metric_definitions": {
+    "accuracy_l1_m": "mean area-uniform mesh-sample to full-LiDAR distance",
+    "accuracy_rmse_m": "RMSE area-uniform mesh-sample to full-LiDAR distance",
+    "accuracy_best90_l1_m": "mean of exactly 900000 index-stably selected smallest distances",
+    "accuracy_best90_rmse_m": "RMSE of exactly 900000 index-stably selected smallest distances",
+    "precision_0_20": "untrimmed fraction of surface samples at distance <= 0.20m",
+    "completeness_0_20": "fraction of fixed refined-LiDAR points within 0.20m of triangle surface"
+  },
+  "alignment": "identity",
+  "fitted_degrees_of_freedom": 0,
+  "geometry_repairs": 0,
+  "composite_score": null
+}

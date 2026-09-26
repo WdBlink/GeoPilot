@@ -1,0 +1,118 @@
+{
+  "schema": "geopilot-public-measurements/1",
+  "note": "Selected metric fields derived from bound score files. Original full score/manifest hashes identify non-redistributed local artifacts, not an independent distance recomputation. No raw scene data included. P0/P1/P2 and A/B and S-U/F-U are distinct comparisons.",
+  "records": [
+    {
+      "id": "P0",
+      "scope": "single-scene development",
+      "source_score_sha256": "09e9feb335e89e630d09a317eb40b0e624016e06baca61c5d577dca005c04d03",
+      "source_manifest_sha256": "92c2922d7727117380fa0734f4f623468c83e7a6a6c04c6bf841a096ab19faad",
+      "status": "valid",
+      "surface_metrics": {
+        "accuracy_best90_count": 900000,
+        "accuracy_best90_l1_m": 1.7079880115467878,
+        "accuracy_best90_rmse_m": 2.017265063022017,
+        "accuracy_l1_m": 1.9880847240825668,
+        "accuracy_rmse_m": 2.3920945165234975,
+        "completeness_0_20": 0.023695378791305385,
+        "precision_0_20": 0.064065
+      }
+    },
+    {
+      "id": "P1",
+      "scope": "single-scene development",
+      "source_score_sha256": "83fb78b445d1e2b5758d5d9c0ef1e254a92c8382edd19a252356f713a18092a5",
+      "source_manifest_sha256": "bd497d7c582f9679ef8e2e9230c7f31c18b679e46cac2863cb01f1884e9c3849",
+      "status": "valid",
+      "surface_metrics": {
+        "accuracy_best90_count": 900000,
+        "accuracy_best90_l1_m": 1.741330624295489,
+        "accuracy_best90_rmse_m": 2.046679930381732,
+        "accuracy_l1_m": 2.019518900459747,
+        "accuracy_rmse_m": 2.417309383826733,
+        "completeness_0_20": 0.022448376479781755,
+        "precision_0_20": 0.061195
+      }
+    },
+    {
+      "id": "P2",
+      "scope": "single-scene development",
+      "source_score_sha256": "9d572629cd7b8990a5fa3236797a004e9a15023fd101b7cd55b21d46a68b7045",
+      "source_manifest_sha256": "76d269f9351c946ea170e52d94ffe2bb8a18d874bfe3e0347126146ef99412ec",
+      "status": "valid",
+      "surface_metrics": {
+        "accuracy_best90_count": 900000,
+        "accuracy_best90_l1_m": 1.7141235180753354,
+        "accuracy_best90_rmse_m": 2.0227594723454714,
+        "accuracy_l1_m": 1.9935624687471745,
+        "accuracy_rmse_m": 2.3962142396792774,
+        "completeness_0_20": 0.023700353084586335,
+        "precision_0_20": 0.064098
+      }
+    },
+    {
+      "id": "A",
+      "scope": "single-scene development",
+      "source_score_sha256": "b11241419961cc3ca42d8cc8f148fca05c6dfbca5ea4271d9bc13b8f0ece26f5",
+      "source_manifest_sha256": "1186ae666acfa2c55de33da7c21d96bac1f83330e3be87d123b35e6ca5c49f1a",
+      "status": "valid",
+      "surface_metrics": {
+        "accuracy_best90_count": 900000,
+        "accuracy_best90_l1_m": 1.7101321633975284,
+        "accuracy_best90_rmse_m": 2.0184952822987245,
+        "accuracy_l1_m": 1.9896839863256364,
+        "accuracy_rmse_m": 2.3924725430824902,
+        "completeness_0_20": 0.02364639159012816,
+        "precision_0_20": 0.063999
+      }
+    },
+    {
+      "id": "B",
+      "scope": "single-scene development",
+      "source_score_sha256": "bb17ad81497c674ae12384e4cec3f20851704e1af8599caa1cb49060eff2323b",
+      "source_manifest_sha256": "81fce07826e5c6340d5836ed6714f88944c1bebe50235560b65391b7b4b9a947",
+      "status": "valid",
+      "surface_metrics": {
+        "accuracy_best90_count": 900000,
+        "accuracy_best90_l1_m": 1.5688182317352277,
+        "accuracy_best90_rmse_m": 1.87674513307822,
+        "accuracy_l1_m": 1.8497011840444821,
+        "accuracy_rmse_m": 2.261387859521245,
+        "completeness_0_20": 0.030695190760763453,
+        "precision_0_20": 0.078461
+      }
+    },
+    {
+      "id": "S-U",
+      "scope": "single-scene development",
+      "source_score_sha256": "ea8428d354dd3dbe79e184f3e74cf93923ad0c24796121bd58f5acae8e0d2a97",
+      "source_manifest_sha256": "3ad9bd2ac44b1da904427d5d4942bad5a9cbdae224d96e69bd5f2370307ba2db",
+      "status": "valid",
+      "surface_metrics": {
+        "accuracy_best90_count": 900000,
+        "accuracy_best90_l1_m": 0.13515053562909063,
+        "accuracy_best90_rmse_m": 0.1743128842643956,
+        "accuracy_l1_m": 0.20585966141701773,
+        "accuracy_rmse_m": 0.33585702269288853,
+        "completeness_0_20": 0.6680446211026666,
+        "precision_0_20": 0.697435
+      }
+    },
+    {
+      "id": "F-U",
+      "scope": "single-scene development",
+      "source_score_sha256": "64ba0e211d84c42718ab5ce15b5f96865428a91380a7af6088d73b962cc1ceff",
+      "source_manifest_sha256": "a5825d2304d9c5a08d423d493d3cbb8db624407b8e69b365dc9d23d942eaa82c",
+      "status": "valid",
+      "surface_metrics": {
+        "accuracy_best90_count": 900000,
+        "accuracy_best90_l1_m": 0.10871651489835465,
+        "accuracy_best90_rmse_m": 0.14645527638132474,
+        "accuracy_l1_m": 0.18093918257576275,
+        "accuracy_rmse_m": 0.32406746971595235,
+        "completeness_0_20": 0.7235569896659904,
+        "precision_0_20": 0.756188
+      }
+    }
+  ]
+}

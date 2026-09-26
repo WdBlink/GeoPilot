@@ -1,0 +1,8 @@
+# Lightweight evaluator checks: use Python 3.10 (frozen runtime used 3.10.20).
+# Historical full evaluator lock: code/usegeo_mesh_benchmark/requirements.txt.
+numpy==1.25.2
+scipy==1.11.1
+laspy==2.7.0
+Pillow==12.3.0
+open3d==0.17.0
+pytest>=7,<10
