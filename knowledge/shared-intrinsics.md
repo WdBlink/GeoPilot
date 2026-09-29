@@ -15,3 +15,9 @@
 **Limits:** one reconstruction per arm; low absolute threshold coverage; no frozen unseen-scene replay. Always-shared selection could explain the chosen configuration. The historical restricted `prepare` action could not make this edit; the outer research Agent implemented it in experiment code.
 
 **Source identities:** diagnosis SHA256 `cf9fdc5e556e8448ec5527384025974ab2564cb493fbcc192c39792e37822371`; pre-execution plan SHA256 `b0cfebf08565238155814508588306b3805a2641401b2bd4efd39765ec0ddba1`. These identify original non-redistributed local records. The matched implementation is `../experiments/geopilot_rsih_learning/shared_camera_ba_diagnostic.py`.
+
+## 2026-09-28 diagnostic follow-up
+
+The original comparison is Dataset-1 M and uses identity alignment in its existing world frame. In a separate reference-assisted global-alignment sensitivity check, the A/B ranking reversed after translation, rigid and similarity fitting. [Selected diagnostic values](../evidence/alignment-sensitivity.json) retain the source identity, 6,000 fit / 12,000 validation samples per arm and diagnostic-only status. The samples differ from the original full-score population; these numbers do not replace those six metrics. Roughly a metre remained unexplained, and the fitted transform is not an independently verified coordinate correction.
+
+Update to guidance: test input/calibration and world-frame compatibility before attributing the favorable native-frame difference to local shape. Shared intrinsics remains a conditional intervention, not a universally better strategy or demonstrated Agent increment.

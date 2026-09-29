@@ -11,3 +11,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: python scripts/verify_artifacts.py
+      - name: Check experimental host components without data or network
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+          PYTHONPATH: experiments/geopilot_rsih_learning
+        run: python -B -m unittest test_outer_agent_dispatch test_outer_agent_receipt test_outer_config.RegisteredSetTest

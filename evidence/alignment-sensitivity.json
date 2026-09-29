@@ -1,0 +1,68 @@
+{
+  "schema": "geopilot-public-diagnostic/1",
+  "date": "2026-09-28",
+  "status": "completed",
+  "scope": "development_reference_assisted_diagnostic",
+  "formal_score": false,
+  "reference_used_for_fitting": true,
+  "source_sha256": "2ad0d436f54decc3fdf319635aa4655c41b646bd4b7c2684657f510370951bf6",
+  "note": "Separate spatial fit/validation samples; not the original score population, not an executable deployment correction, and not an independent-scene evaluation.",
+  "records": [
+    {
+      "arm": "A",
+      "alignment": "identity",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 1.999155781721558
+    },
+    {
+      "arm": "A",
+      "alignment": "translation",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 1.0302630329018323
+    },
+    {
+      "arm": "A",
+      "alignment": "rigid",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 1.0118976591416267
+    },
+    {
+      "arm": "A",
+      "alignment": "similarity",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 0.9595099855730856
+    },
+    {
+      "arm": "B",
+      "alignment": "identity",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 1.8488285093471555
+    },
+    {
+      "arm": "B",
+      "alignment": "translation",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 1.1007300400862654
+    },
+    {
+      "arm": "B",
+      "alignment": "rigid",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 1.0730417530546605
+    },
+    {
+      "arm": "B",
+      "alignment": "similarity",
+      "fit_samples": 6000,
+      "validation_samples": 12000,
+      "validation_mean_m": 1.0320057471551791
+    }
+  ]
+}

@@ -38,6 +38,20 @@ def main():
         assert item['claim'] and item['source']
     for name in ('shared-intrinsics.md', 'program-outcomes.md'):
         assert (ROOT / 'knowledge' / name).is_file()
+    diagnostic = json.loads((ROOT / 'evidence/alignment-sensitivity.json').read_text())
+    assert diagnostic['formal_score'] is False and diagnostic['reference_used_for_fitting'] is True
+    assert len(diagnostic['source_sha256']) == 64
+    rows = {(r['arm'], r['alignment']): r for r in diagnostic['records']}
+    families = ('identity', 'translation', 'rigid', 'similarity')
+    assert len(rows) == len(diagnostic['records']) == 8
+    assert set(rows) == {(arm, kind) for arm in ('A', 'B') for kind in families}
+    for row in rows.values():
+        assert row['fit_samples'] == 6000 and row['validation_samples'] == 12000
+        assert math.isfinite(row['validation_mean_m']) and row['validation_mean_m'] >= 0
+    for kind in families:
+        difference = rows['B', kind]['validation_mean_m'] - rows['A', kind]['validation_mean_m']
+        assert difference < 0 if kind == 'identity' else difference > 0
+    print('PASS: 8 separately labeled alignment-diagnostic records and ranking directions')
     print('PASS: 7 metric records, shared-intrinsics deltas, knowledge types and experience records')
     print('Scope: published scalar consistency, not independent geometry recomputation.')
 

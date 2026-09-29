@@ -141,3 +141,7 @@ source test, not a claim of testing every operating system or a fresh Python
 dependency installation. No new reconstruction or model request was run for
 packaging. The excluded large data and historical runtime bindings remain
 prerequisites for full result replay.
+
+## 6. Current outer-host checks
+
+The default README quick start now includes a standard-library-only dispatcher/receipt/registry suite. Run only the named modules/class there: numerical integration tests require additional frozen inputs and are not represented as public data-free checks. The new model client takes an explicit model identity (MiniMax-M3.1-Flash-Preview for prospective comparisons); the legacy M3 client above remains historical. See [usage and IO](usage.md). No new end-to-end reconstruction is claimed by this update.
