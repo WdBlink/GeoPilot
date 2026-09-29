@@ -80,13 +80,56 @@ A host task may diagnose and propose a configuration, but a recommendation is no
 
 ## Outer host API
 
-The experimental modules `outer_agent_dispatch.py`, `outer_agent_receipt.py` and `outer_config.py` can be imported using `PYTHONPATH=experiments/geopilot_rsih_learning`. They do not install a daemon or discover private credentials. `dispatch(...)` receives an explicit task, configuration registry, reconstruction/scoring boundaries, model client, experience and rules. The host validates actions and projects feedback; the model does not directly execute shell commands.
+The experimental modules `outer_agent_dispatch.py`, `outer_agent_receipt.py`, `outer_config.py` and `decision_state.py` can be imported using `PYTHONPATH=experiments/geopilot_rsih_learning`. They do not install a daemon or discover private credentials. `dispatch(...)` receives an explicit task, configuration registry, reconstruction/scoring boundaries, model client, experience and rules. The host validates actions and projects feedback; the model does not directly execute shell commands.
 
-Use the [offline tests](../experiments/geopilot_rsih_learning/test_outer_agent_dispatch.py) as executable interface examples. They inject fake numerical/model responses and must not be used as geometry evidence. The current registry exposes three configurations: baseline, mesh decimation 0.25 and densification resolution level 2. It does not yet expose camera grouping, photo selection or the richer diagnostic actions in the roadmap.
+Use the [offline tests](../experiments/geopilot_rsih_learning/test_outer_agent_dispatch.py) as executable interface examples. They inject fake numerical/model responses and must not be used as geometry evidence. The current registry exposes three configurations: baseline, mesh decimation 0.25 and densification resolution level 2. The registry does not itself execute camera grouping or photo selection. A new named diagnostic hook accepts trusted host callbacks; domain-specific readers and numerical adapters are supplied by the integrator, not automatically discovered.
 
 For **new** model comparisons, explicitly request `MiniMax-M3.1-Flash-Preview` through `HttpModelClient`, using a configured HTTPS endpoint and a process-supplied key. The client verifies the returned model identity and records actual usage. Keep the old `geopilot_v1/provider.py` and its historical `MiniMax-M3` receipts as the frozen legacy path; do not rewrite old results as M3.1.
 
-`Policy()` has no implicit episode step/call/run/time limit; `HttpModelClient` omits `max_tokens` unless explicitly supplied. A specific preregistered mechanism comparison can supply equal explicit limits. Transport timeout/response-size protection and numerical process guards remain separate. There is no hidden global research budget. This update ran **no live model request** or new numerical experiment.
+`Policy()` has no implicit episode step/call/run/time limit; `HttpModelClient` omits `max_tokens` unless explicitly supplied. A specific preregistered mechanism comparison can supply equal explicit limits. Transport timeout/response-size protection and numerical process guards remain separate. There is no hidden global research budget. The public component checks run **no live model request** or numerical experiment. They do not establish the performance of the new state mechanism on real reconstruction tasks.
+
+## Structured decision state
+
+This is an **opt-in host API for development**, validated with offline fixtures. The portable checks need only Python and this checkout:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=experiments/geopilot_rsih_learning \
+  python3 -B -m unittest test_decision_state \
+  test_outer_agent_dispatch.DispatcherTest.test_structured_state_tool_has_equal_capabilities_and_real_persistence
+```
+
+The test creates synthetic observations and temporary state records, then cleans them up. It needs no dataset, credentials or model service. It is an executable API example, not a reconstruction benchmark.
+
+For an actual integration, `dispatch(...)` retains its explicit task, registry, model client, rule table, frozen experience and injected numerical/scoring boundaries. It adds:
+
+| Argument | Required input and behavior |
+|---|---|
+| `diagnostics` | Optional mapping from a fixed name to `description`, `source_ids` and a zero-argument `run()` callback returning a permitted-facts dictionary. Every source ID must be bound in `task.information_sources` with a file path and SHA-256. The host checks those sources before and after the callback. |
+| `read_only=True` | Allows inspection and stopping, plus state updates if enabled. It refuses numerical execution. Default is `False`. |
+| `structured_state=True` | Exposes the same `update_decision_state` tool and state input to all four arms. G0/GE must record a prospective claim before numerical action and update stale rows before the next action or final stop; L/R may use the tool optionally. Default is `False`. |
+
+Callbacks are trusted host code, not a sandbox for arbitrary model code. They must return only allowed input/tool facts. Diagnostic callbacks must not expose evaluation reference geometry or raw scores; the interface rejects prohibited score/reference fields, and geometric feedback remains behind the separate scoring boundary. The model selects an exact menu name and a reason, never a file path or executable code. Missing or changed evidence produces an explicit failure.
+
+The state tool accepts `claims` and `experience` arrays with the row fields advertised in its tool schema:
+
+- A claim records `claim_id`, `observation_refs`, `alternatives`, `proposed_action`, `predicted_observation`, `observed_result_refs` and `status` (`unresolved`, `supported`, `contradicted`, or `not_tested`). Before a numerical action, `proposed_action` names its exact registered configuration and result references remain empty.
+- An experience row records a frozen `entry_id`, `applicability_refs` and `status` (`eligible`, `inapplicable`, or `unresolved`). The host retains the supplied entry text, provenance, conditions and counterevidence; the model cannot rewrite it or promote a new lesson through this tool.
+- Observation references use actual `step-N` feedback IDs or source IDs from successful diagnostics. After execution, a supported/contradicted claim must cite that run's feedback and preserve its original prediction and action. An unresolved interpretation may remain unresolved.
+
+New actual observations mark existing rows `needs_update`; state updates and host refusals do not create new observations. These checks establish provenance and consistency, **not scientific correctness**. A supported label is the Agent's interpretation and still needs independent evaluation. No geometry benefit follows merely from maintaining the table.
+
+For each host-specified fresh `output` directory, the dispatcher stores:
+
+| Artifact | Contents |
+|---|---|
+| `receipt.json` | Actual model/tool calls, usage when reported, failed attempts, source identities and the enabled state treatment; the top-level receipt schema remains version 1 |
+| `raw/step-*.response.body` | Observed provider responses, when any arrived; private run outputs are not automatically published |
+| `step-*/diagnostic/result.json` | Diagnostic source hashes, permitted facts or explicit failure, and elapsed time |
+| `decision-state/state-*.json` | With the feature enabled: state snapshots, actual claim-to-action bindings, frozen experience and update trigger; paths and hashes are bound through the receipt's instruction record |
+
+Each new model request includes the current state and the complete allowed feedback history. `previous_feedback` is null initially, then a `history_index` pointing to `history[index].feedback`; the latest full result is not serialized twice. This removes duplication without trimming facts, changing evidence permissions or imposing an episode budget. Byte reduction alone is not a measured speedup.
+
+If bound dispatcher/state source changes during execution, the episode stops with `code_source_drift`, retaining expected/observed hashes and an invalidated table; it does not hot-load modified code. A numerical failure retains its failure state and pending updates, following the existing termination policy. No new automatic retry policy or numerical adapter is added here.
 
 ## Troubleshooting
 

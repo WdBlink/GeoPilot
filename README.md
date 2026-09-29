@@ -34,10 +34,10 @@ Expected: seven published metric records, eight separately labeled alignment-dia
 ```bash
 PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=experiments/geopilot_rsih_learning \
   python3 -B -m unittest test_outer_agent_dispatch test_outer_agent_receipt \
-  test_outer_config.RegisteredSetTest
+  test_decision_state test_outer_config.RegisteredSetTest
 ```
 
-The tests exercise rule / ordinary LLM / GeoPilot without history / GeoPilot with history, using **synthetic model and numerical responses**. They check capability parity, evidence isolation, error recording and optional limits. No mesh or scientific result is produced. These components are an experimental host API, not a general reconstruction CLI.
+The tests exercise rule / ordinary LLM / GeoPilot without history / GeoPilot with history, using **synthetic model and numerical responses**. They check capability parity, named read-only diagnostics, source-bound decision state, evidence isolation, failure accounting and optional limits. No mesh or scientific result is produced. These components are an experimental host API, not a general reconstruction CLI. [Optional decision-state usage](docs/usage.md#structured-decision-state) explains the inputs, stored records and current validation scope.
 
 ### 3. Choose a reconstruction route
 
@@ -86,6 +86,7 @@ The next study retains **Agent / experience incremental contribution** as its go
 
 | Date | Milestone | Status |
 |---|---|---|
+| **2026-09-30** | Named diagnostic hooks, optional structured decision state, failure accounting and removal of duplicate latest-feedback context | Component update validated offline; no Agent/experience advantage or new geometry claim |
 | **2026-09-29** | Usage and input/output guide; experimental outer dispatcher and regression checks; explicit optional experiment limits; alignment-sensitive experience update | Main-branch development update; no new geometry result |
 | **2026-09-26** | Initial system source, curated experience, software citation and data-free checks | [v0.1.0 research prerelease](https://github.com/WdBlink/GeoPilot/releases/tag/v0.1.0) |
 | 2026-09-25 | Feedback-led shared-intrinsics comparison completed | Single-scene development case |

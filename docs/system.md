@@ -13,3 +13,9 @@ A practical outer research episode follows:
 This describes the demonstrated host workflow, not an additional software daemon. No autonomous general memory-distillation/retrieval service is released. The executable offline prompt and history construction are in `experiments/geopilot_rsih_learning/learning.py` and `continuation.py`.
 
 The restricted history compiler consumes selected validly scored attempts and registered knowledge. Unscored crashes can inform the outer workflow but are not converted into valid geometric scores. Knowledge changes are external context changes, not model-weight training.
+
+## Optional host decision state
+
+The experimental outer dispatcher now accepts named, source-bound diagnostic callbacks. The host supplies their code and returns permitted facts; the model can select only an advertised name. With `structured_state=True`, all four arms also receive `update_decision_state`. G0/GE must maintain explicit claims, alternative explanations, predictions, observed-result references and frozen-experience applicability. The general LLM and rule arms may use the same tool without that enforcement. Default execution leaves this feature disabled.
+
+Actual tool feedback marks existing rows as needing an update. State updates are not new evidence, and a model cannot create observations by writing a prediction. Before an executed claim can be marked supported or contradicted, it must cite the corresponding run feedback. This verifies an evidence reference, not the scientific validity of the interpretation. Host-owned state snapshots and action bindings accompany the receipt; source-code drift stops the episode. This mechanism has been checked offline only. See [the API and output contract](usage.md#structured-decision-state).

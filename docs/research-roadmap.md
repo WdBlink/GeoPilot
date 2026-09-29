@@ -1,6 +1,6 @@
 # Research roadmap: decisions that can change a reconstruction
 
-Updated 2026-09-29. The primary research goal remains **incremental value from the Agent and frozen experience**. The current manuscript is a working draft. This roadmap is not a completed experiment, performance promise or final preregistration.
+Updated 2026-09-30. The primary research goal remains **incremental value from the Agent and frozen experience**. The current manuscript is a working draft. This roadmap is not a completed experiment, performance promise or final preregistration.
 
 ## Why broaden the decision domain?
 
@@ -10,10 +10,10 @@ If a few configurations can be exhaustively evaluated, a strong enumerating base
 
 | Real need | Decision to study | Implementation status |
 |---|---|---|
-| Image/calibration mismatch or heterogeneous camera groups | Check pixel-camera bindings; choose authorized matching inputs; test fixed, per-image or group-shared intrinsics | Historical diagnostic scripts exist; not exposed by the outer dispatcher |
-| Similar aggregate error with competing explanations | Choose effective-parameter, projection, coverage or coordinate-metadata diagnostics before changing a parameter | Script-level evidence exists; unified diagnostic-action interface pending |
+| Image/calibration mismatch or heterogeneous camera groups | Check pixel-camera bindings; choose authorized matching inputs; test fixed, per-image or group-shared intrinsics | Historical diagnostic scripts exist; named host callbacks are exposed, but generic input/calibration adapters are not released |
+| Similar aggregate error with competing explanations | Choose effective-parameter, projection, coverage or coordinate-metadata diagnostics before changing a parameter | Named read-only diagnostic interface is available; each domain reader and downstream intervention still needs its own verification |
 | Dense/mesh/refine interactions and limited resources | Change effective stage settings or resume a valid dependent stage | Registered inner parameters and a three-configuration outer registry exist; richer versioned surface pending |
-| Relevant versus conflicting experience | Select sourced guidance, check applicability and decide whether to act or gather evidence | Curated knowledge exists; general automatic recall/distillation pending |
+| Relevant versus conflicting experience | Select sourced guidance, check applicability and decide whether to act or gather evidence | Curated knowledge and optional source-bound applicability state exist; general automatic recall/distillation remains pending |
 
 Image selection must preserve the task's fixed target region and report omissions; removing difficult areas must not create an apparent gain. All baselines receive the same legal inputs and tools. Do not hide observations from a baseline or design tasks after seeing which condition wins.
 
@@ -34,3 +34,9 @@ Jev remains an optional local-decision component: compare it only where it repla
 ## Practical tool roadmap
 
 The next portable scene adapter should accept actual image/camera/georeferencing bundles, validate their compatibility, expose effective tool settings, and produce a mesh with coordinate/coverage/provenance metadata. General images-only SfM, calibrated-camera ingestion, textured/GIS products and cross-platform execution must be individually tested before being called supported. The current [usage guide](usage.md) identifies what runs today.
+
+## Component status: optional structured decision state
+
+`structured_state=True` exposes the same update tool to all four arms. G0/GE must register a prospective observation and revisit their claim/applicability rows after actual feedback before another numerical action or final stop. L and R can use the same tool optionally. The host checks structure, observed IDs and executed-action bindings; it does not decide whether a scientific claim is true. Frozen experience text stays intact.
+
+This mechanism has passed offline tests with synthetic boundaries. It has not established an Agent/experience benefit in a real-model reconstruction comparison. The current three registered numerical configurations are unchanged. New ETH adapters and ongoing Dataset-2 development experiments are outside this component update and are not advertised as portable services or new results. The next research comparison must freeze the mechanism and provide the same legal inputs and numerical tools to its controls.

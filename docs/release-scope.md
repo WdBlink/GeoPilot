@@ -19,3 +19,11 @@ README organization was informed by the public VGGT and DUSt3R research reposito
 Adds usage/IO documentation, a host task template, the experimental outer dispatcher/receipt/configuration modules and offline tests. Their numerical and scoring interfaces are injected; the new components do not make historical scene adapters portable. Original numerical tools, scoring definitions, legacy M3 client and measurements retain their identities. The current experiment-limit defaults are explicit `None`; historical runs are not reinterpreted. No raw model responses, private sessions, data or manuscript PDF are added.
 
 README information order also draws on the public [COLMAP](https://github.com/colmap/colmap) and [VoltAgent](https://github.com/VoltAgent/voltagent) READMEs: concrete setup and entry points, then deeper architecture. No external artwork or wording is copied.
+
+## 2026-09-30 component update
+
+Adds original GeoPilot decision-state bookkeeping and tests, and updates the public dispatcher with named read-only diagnostic callbacks, accurate failed-attempt accounting, transport failure metadata and a latest-feedback reference instead of duplicate context. Existing receipt/configuration modules and the three registered numerical configurations retain their source identity. The public procedure extract and historical measurement records are unchanged.
+
+The new `decision_state.py` uses only the Python standard library and existing GeoPilot interfaces. These files and tests contain original project implementation; no upstream Agent framework, model response, diagnostic dataset, private session or third-party source is copied. Test fixtures are synthetic. The state feature is opt-in and has only offline validation; it is not a scientific truth checker, autonomous knowledge-promotion service or proof of Agent/experience advantage.
+
+No current ETH adapter, private host/numerical runner, unfinished Dataset-2 experiment, manuscript or new geometric result is included. Source hashes written by future host runs describe that run; they do not replace or relabel the recorded identities of earlier research.

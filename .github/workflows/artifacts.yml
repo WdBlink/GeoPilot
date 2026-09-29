@@ -15,4 +15,4 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: '1'
           PYTHONPATH: experiments/geopilot_rsih_learning
-        run: python -B -m unittest test_outer_agent_dispatch test_outer_agent_receipt test_outer_config.RegisteredSetTest
+        run: python -B -m unittest test_outer_agent_dispatch test_outer_agent_receipt test_decision_state test_outer_config.RegisteredSetTest
